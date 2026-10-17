@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>FasterStartup</AssemblyName>
+    <RootNamespace>FasterStartup</RootNamespace>
+    <RiskOfOptionsDll Condition="'$(RiskOfOptionsDll)' == ''">$(PluginsDir)/Rune580-Risk_Of_Options/RiskOfOptions/RiskOfOptions.dll</RiskOfOptionsDll>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Patcher/FasterStartup.Patcher.csproj" Private="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx" HintPath="$(BepInExCoreDir)/BepInEx.dll" Private="false" />
+    <Reference Include="Mono.Cecil" HintPath="$(BepInExCoreDir)/Mono.Cecil.dll" Private="false" />
+    <Reference Include="MonoMod.RuntimeDetour" HintPath="$(BepInExCoreDir)/MonoMod.RuntimeDetour.dll" Private="false" />
+    <Reference Include="MonoMod.Utils" HintPath="$(BepInExCoreDir)/MonoMod.Utils.dll" Private="false" />
+    <Reference Include="MMHOOK_RoR2" HintPath="$(PluginsDir)/MMHOOK/MMHOOK_RoR2.dll" Private="false" />
+    <Reference Include="RiskOfOptions" HintPath="$(RiskOfOptionsDll)" Private="false" />
+    <Reference Include="RoR2" HintPath="$(ManagedDir)/RoR2.dll" Private="false" />
+    <Reference Include="Unity.Postprocessing.Runtime" HintPath="$(ManagedDir)/Unity.Postprocessing.Runtime.dll" Private="false" />
+    <Reference Include="HGCSharpUtils" HintPath="$(ManagedDir)/HGCSharpUtils.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(ManagedDir)/UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedDir)/UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.ImageConversionModule" HintPath="$(ManagedDir)/UnityEngine.ImageConversionModule.dll" Private="false" />
+  </ItemGroup>
+
+</Project>

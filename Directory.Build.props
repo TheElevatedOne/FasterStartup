@@ -1,0 +1,22 @@
+<Project>
+  <!--
+    Shared settings and reference paths. Override on the command line / via the Makefile, e.g.
+      dotnet build -p:RoR2Dir="/path/to/Risk of Rain 2" -p:ProfileDir="/path/to/r2modman/profile"
+  -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <DebugType>portable</DebugType>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>$(MSBuildThisFileDirectory)bin/$(Configuration)/</OutputPath>
+    <Version>1.0.0</Version>
+
+    <RoR2Dir Condition="'$(RoR2Dir)' == ''">$(HOME)/.local/share/Steam/steamapps/common/Risk of Rain 2</RoR2Dir>
+    <ProfileDir Condition="'$(ProfileDir)' == ''">$(HOME)/.config/r2modmanPlus-local/RiskOfRain2/profiles/Default</ProfileDir>
+    <ManagedDir>$(RoR2Dir)/Risk of Rain 2_Data/Managed</ManagedDir>
+    <BepInExCoreDir>$(ProfileDir)/BepInEx/core</BepInExCoreDir>
+    <PluginsDir>$(ProfileDir)/BepInEx/plugins</PluginsDir>
+  </PropertyGroup>
+</Project>

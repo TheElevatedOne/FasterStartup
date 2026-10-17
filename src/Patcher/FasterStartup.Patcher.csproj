@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>FasterStartup.Patcher</AssemblyName>
+    <RootNamespace>FasterStartup.Patcher</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx" HintPath="$(BepInExCoreDir)/BepInEx.dll" Private="false" />
+    <Reference Include="BepInEx.Preloader" HintPath="$(BepInExCoreDir)/BepInEx.Preloader.dll" Private="false" />
+    <Reference Include="Mono.Cecil" HintPath="$(BepInExCoreDir)/Mono.Cecil.dll" Private="false" />
+  </ItemGroup>
+
+</Project>
