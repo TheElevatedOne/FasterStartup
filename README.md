@@ -1,5 +1,9 @@
 # FasterStartup
 
+![Static Badge](https://img.shields.io/badge/CLAUDE-VIBECODED?style=for-the-badge&logo=claude&label=VIBECODED&labelColor=%23333333&color=%23de7356)
+
+![ICON](https://raw.githubusercontent.com/TheElevatedOne/FasterStartup/refs/heads/main/icon.png)
+
 A Risk of Rain 2 mod that makes startup faster and reports where startup time goes. The player-facing description
 (packaged as the Thunderstore README, without building instructions) is [thunderstore/README.md](thunderstore/README.md).
 
