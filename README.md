@@ -7,6 +7,20 @@
 A Risk of Rain 2 mod that makes startup faster and reports where startup time goes. The player-facing description
 (packaged as the Thunderstore README, without building instructions) is [thunderstore/README.md](thunderstore/README.md).
 
+## Preview
+- Both tests were done on a r2modman profile I used for playing with all 4 dlc's
+- r2modman code `01a14ad1-dfac-7dae-a349-240ed52e3a91`
+
+<details>
+     <summary>Test Without Mod Enabled</summary>
+     <video src="https://github.com/user-attachments/assets/8e508d44-9e76-45bf-b53f-6f65f1980d69">
+</details>
+
+<details>
+     <summary>Test With Mod Enabled</summary>
+     <video src="https://github.com/user-attachments/assets/505f50dc-d94b-4869-bc1f-0e287b2527fd">
+</details>
+
 ## Layout
 
 | Path | What it is |
