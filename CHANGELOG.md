@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1
+
+- The loading screen frame rate is now capped at 500 FPS (it was unlimited), to avoid power spikes on fast GPUs.
+  The setting is now `LoadingFrameRateCap` (30 to 500, default 500); the old `LoadingFrameRateLimit` is no longer used.
+
 ## 1.0.0
 
 - Initial release.

@@ -26,8 +26,9 @@ which took 13 seconds on the profile above. Faster Startup only scans the assemb
 **Loading pacing.** The game loads its content (items, survivors, every DLC and every mod's content packs) and builds its catalogs in coroutines.
 Each one advances a little every frame, so two things decide how fast the loading screen finishes:
 
-- **The frame rate limit.** The loading screen runs at your normal FPS cap and vsync. Faster Startup lifts both while the game
-  loads and puts your own settings back when the main menu opens.
+- **The frame rate limit.** The loading screen runs at your normal FPS cap and vsync. Faster Startup turns off vsync and raises
+  the cap to 500 FPS while the game loads (not unlimited, so fast GPUs don't spike in power draw), and puts your own settings
+  back when the main menu opens.
 - **The per-frame loading budget.** Each frame the game spends up to 16 ms (content) or 22 ms (catalogs) running loading code
   before it lets the frame finish. Most of that loading code is waiting for assets, and those only arrive between frames. So the game
   spends most of each frame checking on assets that can't be ready yet, and holds back the work that would make them ready.
@@ -56,8 +57,8 @@ The one-line summary is also in the BepInEx log, e.g.
 
 | Setting | Default | Description |
 | --- | --- | --- |
-| `UnlockFrameRate` | `true` | Lift the frame rate limit and vsync while the game loads. Restored at the main menu. |
-| `LoadingFrameRateLimit` | `0` | Frame rate limit while loading, when `UnlockFrameRate` is on. `0` = unlimited. |
+| `UnlockFrameRate` | `true` | Raise the frame rate limit to `LoadingFrameRateCap` and turn off vsync while the game loads. Restored at the main menu. |
+| `LoadingFrameRateCap` | `500` | Frame rate limit while loading, when `UnlockFrameRate` is on. 30 to 500; capped at 500 so fast GPUs don't spike in power draw. |
 | `ChangeLoadBudget` | `true` | Replace the game's per-frame loading budget (16 ms content, 22 ms catalogs) with `LoadBudgetMs`. |
 | `LoadBudgetMs` | `2` | Loading budget per frame, in milliseconds. 1 to 4 ms all measured about the same; 50 ms was much slower than vanilla. |
 | `FastPostProcessingScan` | `true` | Only scan assemblies that can contain post-processing effects when the loading screen starts. |

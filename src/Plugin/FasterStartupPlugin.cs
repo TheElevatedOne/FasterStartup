@@ -16,7 +16,7 @@ namespace FasterStartup
     {
         public const string PluginGUID = "com.elevated.FasterStartup";
         public const string PluginName = "FasterStartup";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "1.0.1";
 
         internal static ManualLogSource Log;
 
@@ -37,11 +37,13 @@ namespace FasterStartup
             Log = Logger;
 
             unlockFrameRate = Config.Bind("Loading", "UnlockFrameRate", true,
-                "Lift the frame rate limit and vsync while the game loads. Loading advances once per frame, and the "
-                + "game caps the loading screen at 60 FPS by default. Your own settings are restored at the main menu.");
-            loadingFrameRateLimit = Config.Bind("Loading", "LoadingFrameRateLimit", 0,
-                new ConfigDescription("Frame rate limit while loading when UnlockFrameRate is on. 0 = unlimited.",
-                    new AcceptableValueRange<int>(0, 1000)));
+                "Raise the frame rate limit to LoadingFrameRateCap and turn off vsync while the game loads. Loading advances "
+                + "once per frame, and the game caps the loading screen at 60 FPS by default. Your own settings are restored at the main menu.");
+            // Replaces LoadingFrameRateLimit (1.0.0), whose default 0 meant unlimited. A new key so existing configs get the cap.
+            loadingFrameRateLimit = Config.Bind("Loading", "LoadingFrameRateCap", FramePacing.MaxLoadingFrameRate,
+                new ConfigDescription($"Frame rate limit while loading when UnlockFrameRate is on. At most {FramePacing.MaxLoadingFrameRate}: "
+                    + "the loading screen is cheap to draw, and an unlimited frame rate can make powerful GPUs spike in power draw.",
+                    new AcceptableValueRange<int>(30, FramePacing.MaxLoadingFrameRate)));
             changeLoadBudget = Config.Bind("Loading", "ChangeLoadBudget", true,
                 "Replace the game's per-frame loading budget (16 ms for content packs, 22 ms for catalogs) with LoadBudgetMs. "
                 + "The loader mostly waits on assets that only arrive between frames, so a short budget gets them in sooner.");

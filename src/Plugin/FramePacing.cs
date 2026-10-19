@@ -11,11 +11,16 @@ namespace FasterStartup
 {
     // Startup is a chain of coroutines and async loads that each advance once per frame, so the frame
     // rate is the speed limit of the loading screen. The game caps it at 60 FPS by default (fps_max) and
-    // may add vsync on top. This lifts both until the main menu is up, then puts the player's settings back.
+    // may add vsync on top. This raises the cap (to at most MaxLoadingFrameRate) and turns off vsync until the
+    // main menu is up, then puts the player's settings back.
     internal static class FramePacing
     {
         // After loading finishes, keep the limit lifted for at most this long while the next scene opens.
         private const float RestoreTimeoutSeconds = 20f;
+
+        // Never run the loading screen faster than this: an uncapped loading screen renders thousands of frames per
+        // second on fast GPUs, which can cause power spikes, for no further gain in loading speed.
+        internal const int MaxLoadingFrameRate = 500;
 
         private static bool active;
         private static int loadingFrameRate;
@@ -29,7 +34,7 @@ namespace FasterStartup
 
         internal static void Begin(int frameRateDuringLoad)
         {
-            loadingFrameRate = frameRateDuringLoad <= 0 ? -1 : frameRateDuringLoad;
+            loadingFrameRate = Mathf.Clamp(frameRateDuringLoad, 1, MaxLoadingFrameRate);
             savedFrameRate = Application.targetFrameRate;
             savedVSyncCount = QualitySettings.vSyncCount;
             active = true;

@@ -27,7 +27,7 @@ A Risk of Rain 2 mod that makes startup faster and reports where startup time go
 | --- | --- |
 | `src/Patcher` | `FasterStartup.Patcher.dll`, a BepInEx preloader patcher. Patches nothing; it registers a log listener that timestamps every log line from the start of the preloader, so the report can time each plugin's load. |
 | `src/Plugin` | `FasterStartup.dll`, the plugin. |
-| `src/Plugin/FramePacing.cs` | Lifts `Application.targetFrameRate` / vsync while loading. Hooks the `fps_max` / `vsync_count` convar setters to remember the player's values, restores them at the main menu. |
+| `src/Plugin/FramePacing.cs` | Raises `Application.targetFrameRate` to the loading cap (at most 500) and turns off vsync while loading. Hooks the `fps_max` / `vsync_count` convar setters to remember the player's values, restores them at the main menu. |
 | `src/Plugin/LoadPacer.cs` | IL hooks that replace the per-frame budget in `RoR2Application.LoadGameContent` (the `TimeSpan` comparison) and `SystemInitializerAttribute.FRAME_TIME_THRESHOLD_MS` reads, in both the vanilla coroutine and RoR2BepInExPack's replacement of it. |
 | `src/Plugin/PostProcessScan.cs` | IL hook on `PostProcessManager.ReloadBaseTypes` replacing `RuntimeUtilities.GetAllTypesDerivedFrom<PostProcessEffectSettings>()` (which calls `GetTypes()` on every assembly) with a scan of assemblies that reference `Unity.Postprocessing.Runtime`, minus HookGen's `MMHOOK_*`. |
 | `src/Plugin/StageMarks.cs` | Stage marks for the report at the steps of `RoR2Application.InitializeGameRoutine` before content loading, and per-behaviour timing in `EnableBehaviours`. |

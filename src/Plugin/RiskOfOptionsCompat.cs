@@ -36,8 +36,8 @@ namespace FasterStartup
             ModSettingsManager.AddOption(new CheckBoxOption(unlockFrameRate, new CheckBoxConfig { restartRequired = true }), guid, name);
             ModSettingsManager.AddOption(new IntSliderOption(loadingFrameRateLimit, new IntSliderConfig
             {
-                min = 0,
-                max = 1000,
+                min = 30,
+                max = FramePacing.MaxLoadingFrameRate,
                 restartRequired = true,
                 checkIfDisabled = () => !unlockFrameRate.Value
             }), guid, name);
